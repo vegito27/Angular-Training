@@ -7,3 +7,14 @@
 <!-- unit test is challenge  -->
 <!-- Readability deceases with complex forms and validations -->
 <!-- Suitable for simple scenerio -->
+
+<!-- Rective forms -->
+<!-- code and logic resides in components
+No two way bindings
+dynamic form field
+used for complex scenerios
+custom validation
+dynamic validation
+approach requires more coding -->
+
+<!-- Important:password validation not working -->
