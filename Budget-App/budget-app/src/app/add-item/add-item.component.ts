@@ -12,7 +12,7 @@ export class AddItemComponent implements OnInit {
 
   isNewItem:boolean
 
-  @Input() item:BudgetItem=new BudgetItem('',null);
+  @Input() item:BudgetItem;
   @Output() formSubmit:EventEmitter<BudgetItem>=new EventEmitter<BudgetItem>()
 
   constructor() { }
