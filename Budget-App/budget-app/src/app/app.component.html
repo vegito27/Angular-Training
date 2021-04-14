@@ -1,0 +1,17 @@
+<div class="top-bar center">
+<h1>Budget App</h1>
+</div>
+
+<section class="total-budget-section">
+  <h1 [ngClass]="{'red':totalBudget<0,'green':totalBudget>0}">{{totalBudget}}</h1>
+</section>
+
+<section class="add-item-section">
+  <div class="add-item-container">
+    <app-add-item style="padding:20px" (formSubmit)="addItem($event)"></app-add-item>
+  </div>
+</section>
+
+<hr style="margin-top:0">
+
+<app-budget-item-list [budgetItems]="budgetItems" (delete)="deleteItem($event)" (update)="updateItem($event)"></app-budget-item-list>
