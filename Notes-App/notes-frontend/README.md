@@ -1,6 +1,11 @@
-# NotesFrontend
+# How to start
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.8.
+1. Go to app notes-frontend
+2. Run command **npm i**
+3. Run command **npm start**
 
-## Development server
+
+
+
+
 
