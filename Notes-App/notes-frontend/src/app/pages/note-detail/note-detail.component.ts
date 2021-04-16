@@ -16,7 +16,7 @@ export class NoteDetailComponent implements OnInit {
   note:Note;
   new:boolean;
   id:number;
-  edit:Note
+  // edit:Note
 
   ngOnInit(): void {
 
@@ -35,7 +35,7 @@ export class NoteDetailComponent implements OnInit {
         this.new=true
 
         this.note=this.notesService.get(params.id)
-        
+
         console.log("in nthe else",this.new)
       }
     })
