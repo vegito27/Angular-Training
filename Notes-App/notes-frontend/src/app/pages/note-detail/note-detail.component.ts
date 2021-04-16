@@ -22,42 +22,30 @@ export class NoteDetailComponent implements OnInit {
 
     this.route.params.subscribe((params:Params)=>{
       this.note=new Note() 
-
       this.id=params.id
 
       if(params.id=="new"){
         this.new=false
-        
-
         console.log("inn the if ",this.new)
+
       }else{
-
         this.new=true
-
         this.note=this.notesService.get(params.id)
-
         console.log("in nthe else",this.new)
       }
     })
-
   }
 
   onSubmit(form:NgForm){
 
     if(!this.new){
-      
       this.notesService.add(form.value);
-
       console.log("in the if")
-
       this.router.navigateByUrl('/')
 
     }else{
-
       console.log(form)
-
      console.log("in the update")
-
      this.notesService.update(this.id,form.value.title,form.value.body)
      this.router.navigateByUrl('/')
 
@@ -66,8 +54,5 @@ export class NoteDetailComponent implements OnInit {
 
   cancel(){
     this.router.navigateByUrl('/')
-   
   }
-
-
 }

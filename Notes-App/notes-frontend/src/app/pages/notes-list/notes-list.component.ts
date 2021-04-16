@@ -1,5 +1,5 @@
 import { transition, trigger ,style, animate,query, stagger} from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NotedService } from 'src/app/shared/noted.service';
 import { Note } from 'src/shared/note.model';
 
@@ -71,59 +71,50 @@ import { Note } from 'src/shared/note.model';
 export class NotesListComponent implements OnInit {
 
   notes:Note[]=new Array<Note>();
-
   filteredNotes:Note[]=new Array<Note>();
+  @ViewChild('filterInput') filterInputEleRef:ElementRef<HTMLInputElement>
 
   constructor(private notesService:NotedService) { }
 
   ngOnInit() {
 
     // retrive all nodes before load 
-
     this.notes=this.notesService.getAll()
-
     this.filteredNotes=this.notesService.getAll()
-
   }
 
-  deleteNote(id:number){
+  deleteNote(note:Note){
+    let noteId=this.notesService.getId(note)
+    this.notesService.delete(noteId)
+    this.filter(this.filterInputEleRef.nativeElement.value)
+  }
 
-    this.notesService.delete(id)
-
+  generateNoteURL(note:Note){
+    let noteId=this.notesService.getId(note)
+    return noteId
   }
 
   filter(query:string){
 
     query=query.toLowerCase().trim()
-
     let allResults:Note[]=new Array<Note>();
 
     // split up the search query into indivodual words
-
     let terms:string[]=query.split(' ')
-
     terms=this.removeDuplicates(terms)
 
     // compiles all relevent results into allResults array
-
     terms.forEach(term=>{
-
       let results:Note[]=this.relevantNotes(term);
 
       // append results to allResults Array
-
       allResults=[...allResults,...results]
-
     })
 
     // all results will include duplicate nodes
-
     let uniqueResults=this.removeDuplicates(allResults)
-
     this.filteredNotes=uniqueResults
-
     this.sortByRelevance(allResults)
-
 
   }
 
@@ -142,7 +133,6 @@ export class NotesListComponent implements OnInit {
     query=query.toLowerCase().trim();
 
     let relevantNotes=this.notes.filter(note=>{
-
       if(note.title && note.title.toLowerCase().includes(query)){
         return true
       }
@@ -150,7 +140,7 @@ export class NotesListComponent implements OnInit {
       if(note.body && note.body.toLowerCase().includes(query)){
         return true
       }
-
+      
       return false
     })
 
@@ -165,10 +155,9 @@ export class NotesListComponent implements OnInit {
       let noteId=this.notesService.getId(note)
 
       if(noteCountObj[noteId]){
-
         noteCountObj[noteId]+=1
-
-      }else{
+      }
+      else{
         noteCountObj[noteId]=1
       }
     })

@@ -39,8 +39,7 @@ export class NoteCardComponent {
 
     }
   }
-
-
+  
   onXButtonClick(){
     this.deleteEvent.emit()
   }
