@@ -29,6 +29,10 @@ export class NotedService {
   }
 
   update(id:number,title:string,body:string){
+
+    console.log(this.notes)
+
+    console.log(title)
     let note=this.notes[id];
     note.title=title;
     note.body=body;
