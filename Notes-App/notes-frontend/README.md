@@ -6,8 +6,8 @@
 
 screenshots
 
-![alt text] (https://github.com/vegito27/Repo2/tree/master/Notes-App/notes-frontend/src/assets/Image/body.png)
+![alt text] (https://github.com/vegito27/Repo2/tree/master/Notes-App/notes-frontend/src/assets/Image/body.png )
 
-![alt text] (https://github.com/vegito27/Repo2/tree/master/Notes-App/notes-frontend/src/assets/Image/filtered.png)
+![alt text] (./Image/filtered.png)
 
-![alt text] (../notes-frontend/src/assets/Image/index.png)
+![alt text] (./Image/index.png)
