@@ -6,8 +6,8 @@
 
 screenshots
 
-![alt tag] (https://github.com/vegito27/Repo2/tree/master/Notes-App/notes-frontend/src/assets/Image/body.png)
+![alt text] (https://github.com/vegito27/Repo2/tree/master/Notes-App/notes-frontend/src/assets/Image/body.png)
 
-![alt tag] (https://github.com/vegito27/Repo2/tree/master/Notes-App/notes-frontend/src/assets/Image/filtered.png)
+![alt text] (https://github.com/vegito27/Repo2/tree/master/Notes-App/notes-frontend/src/assets/Image/filtered.png)
 
-![alt tag] (https://github.com/vegito27/Repo2/tree/master/Notes-App/notes-frontend/src/assets/Image/index.png)
+![alt text] (../notes-frontend/src/assets/Image/index.png)
