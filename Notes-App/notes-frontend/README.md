@@ -6,12 +6,8 @@
 
 screenshots
 
-<<<<<<< HEAD
 ![alt text](./Image/filtered.png);
 
-![alt text](../Image/index.png);
-=======
-![alt text] (../Image/filtered.png);
+![alt text](./Image/index.png);
 
-![alt text] (../Image/index.png);
->>>>>>> 4836529044748082ca15f7ab8bd0c199813954a2
+![alt text](./Image/index.png);
