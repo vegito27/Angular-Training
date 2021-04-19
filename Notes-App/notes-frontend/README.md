@@ -8,4 +8,4 @@ screenshots
 
 ![alt text] (./Image/filtered.png);
 
-![alt text] (.,/Image/index.png);
+![alt text] (../Image/index.png);
