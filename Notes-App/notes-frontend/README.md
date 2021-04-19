@@ -4,8 +4,10 @@
 2. Run command **npm i**
 3. Run command **npm start**
 
+screenshots
+(
+![alt text] (https://github.com/vegito27/Repo2/tree/master/Notes-App/notes-frontend/src/assets/Image/body.png)
 
+![alt text] (https://github.com/vegito27/Repo2/tree/master/Notes-App/notes-frontend/src/assets/Image/filtered.png)
 
-
-
-
+![alt text] (https://github.com/vegito27/Repo2/tree/master/Notes-App/notes-frontend/src/assets/Image/index.png)
