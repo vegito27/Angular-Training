@@ -4,10 +4,11 @@
 2. Run command **npm i**
 3. Run command **npm start**
 
-screenshots
+**Index Page**
+![alt text](./Image/index.png);
 
+**Filtered Page**
 ![alt text](./Image/filtered.png);
 
-![alt text](./Image/index.png);
-
-![alt text](./Image/index.png);
+**Body Page**
+![alt text](./Image/body.png);
