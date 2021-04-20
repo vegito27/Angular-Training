@@ -4,7 +4,7 @@
     <h2>1 January 2020</h2>
   </div>
 
-  <div class="content-section" [@routeAnim]="prepareRoute(outlet)">
+  <div class="content-section" [@routeAnim]="prepareRoute(outlet)" style="overflow:hidden">
     <router-outlet #outlet="outlet"></router-outlet>
   </div>
 

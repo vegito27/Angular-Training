@@ -15,7 +15,7 @@
     // background-color: aquamarine;
     text-align: center;
     // flex-grow: 1;
-    padding:60px 0;
+    padding:40px 0;
     h1{
         font-size: 80px;
         font-weight: bold;
@@ -34,6 +34,7 @@
     // background-color: cadetblue;
     flex-grow: 1;
     min-height: 0;
+    // position: relative;
 }
 
 .bottom-section{
@@ -45,9 +46,3 @@
     }
 }
 
-.container{
-    max-width: 850px;
-    // background: rgba(black,0.25);
-    margin:auto
-
-}

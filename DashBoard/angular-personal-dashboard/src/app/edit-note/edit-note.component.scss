@@ -1,0 +1,19 @@
+.edit-note-wrapper{
+    // min-height: 600px;
+    max-height:100%;
+    overflow: auto;
+    padding:20px 35px;
+    border-radius: 5px;
+}
+
+small{
+    color:red
+}
+
+.form-field{
+    margin-bottom: 20px;
+}
+
+button{
+    cursor: pointer;
+}
