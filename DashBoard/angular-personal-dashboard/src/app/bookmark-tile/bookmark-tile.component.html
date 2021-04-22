@@ -1,4 +1,4 @@
-<div class="bookmark-tile">
+<a [href]="bookmark.url" target="_blank" class="bookmark-tile">
     <div class="tile-icon" *ngIf="!favIconError">
         <img class="image" [src]="tileIconSrc" alt="" (error)="favIconError=true">
     </div>  
@@ -8,4 +8,4 @@
 
     <p class="tile-text">{{bookmark.name}}</p>
     <!-- {{bookmark.name}} -->
-</div>
+</a>
