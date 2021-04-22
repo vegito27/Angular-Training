@@ -108,3 +108,14 @@ h1.is-bold,h2.is-bold{
 a{
     text-decoration: none;
 }
+
+.form-field{
+    margin-bottom:20px ;
+
+    label.form-field{
+        display: block;
+        margin-bottom: 5px;
+        font-weight:600;
+        color:rgba(black,0.8)
+     }
+}
