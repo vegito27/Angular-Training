@@ -14,17 +14,24 @@
 	margin: 20px auto;
 }
 
+input {
+	cursor: pointer;
+}
+
 .container-fluid {
 	width: 50%;
 	border: 1px solid #ced4da;
 	margin: auto;
 	padding-top: 20px;
 	margin-top: 20px;
+	box-shadow: 0 0 5px #ced4da;
 }
 
 .container-fluid h2 {
 	text-align: center;
 	padding: 20px 0;
+	color: yellowgreen;
+	text-shadow: 0 0 1px #ced4da;
 }
 
 p {
