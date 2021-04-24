@@ -8,7 +8,7 @@ export class RegistrationService {
 
   _url="http://localhost:3001/enroll"
 
-  constructor(private _http:HttpClient) {}
+  constructor(private _http : HttpClient) {}
 
   register(userData:any){
 

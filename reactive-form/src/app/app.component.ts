@@ -4,6 +4,7 @@ import {FormBuilder,Validators } from '@angular/forms'
 import { passwordValidator } from './shared/password.validators';
 import {forbiddenNameValidator} from './shared/username.validator';
 import {RegistrationService} from './registration.service'
+// import { emailValidator } from './shared/email.validators'
 
 
 @Component({
@@ -26,24 +27,18 @@ export class AppComponent implements OnInit {
   }
 
   get alternateEmails(){
-
     return this.registrationForm.get('alternateEmails') as FormArray
-
   }
 
-
   addAlternateEmail(){
-
     this.alternateEmails.push(this.fb.control(''))
-
-
   }
 
   ngOnInit(){
+    
     this.registrationForm=this.fb.group({
- 
       userName:['',[Validators.required,Validators.minLength(3),forbiddenNameValidator]],
-      email:[''],
+      email:['',Validators.required],
       subscribe:[false],
       password:[''],
       confirmPassword:[''],
@@ -51,34 +46,25 @@ export class AppComponent implements OnInit {
         city:[''],
         state:[''],
         postalCode:['']
-      }),alternateEmails:this.fb.array([])
-    },{validator:passwordValidator})
+      }),
+      alternateEmails:this.fb.array([])},
+    {validator:passwordValidator}
+    )
 
-    this.registrationForm.get('subscribe').valueChanges.subscribe(checkedValue=>{
-       const email=this.registrationForm.get('email')
+      this.registrationForm
+      .get('subscribe')
+      .valueChanges
+      .subscribe(checkedValue=>{
+        const email=this.registrationForm.get('email')
 
-       if(checkedValue){
-         email.setValidators(Validators.required) 
-       }else{
-         email.clearValidators()
-       }
-
-       email.updateValueAndValidity()
-    }) 
+        if(checkedValue){
+          email.setValidators(Validators.required) 
+        }else{
+          email.clearValidators()
+        }
+        email.updateValueAndValidity()
+      }) 
   }
-
-  // registrationForm=new FormGroup({
-
-  //     userName:new FormControl('Rishabh'),
-  //     Password:new FormControl('Password'),
-  //     confirmPassword:new FormControl(''),
-  //     address: new FormGroup({
-  //       city: new FormControl(''),
-  //       state: new FormControl(''),
-  //       postalCode: new FormControl('')
-  //     }) 
-
-  // }) 
 
   loadAPIData(){
     this.registrationForm.patchValue({
@@ -87,25 +73,10 @@ export class AppComponent implements OnInit {
       confirmPassword:"test"
     })
   }
-
-
+  
   onSubmit(){
-    this._registrationService.register(this.registrationForm.value).subscribe(response=>console.log('Success',response))
+    console.log(this.registrationForm.value)
+    this._registrationService.register(this.registrationForm.value).subscribe(response=> console.log("Success",response))
   }
 
-
-
-
-  // loadAPIData(){
-  //   this.registrationForm.setValue({
-  //     userName:"Bruce",
-  //     Password:'test',
-  //     confirmPassword:'test',
-  //     address:{
-  //       city:'City',
-  //       state:'State',
-  //       postalCode:'123456'
-  //     }
-  //   })
-  // }
 }
