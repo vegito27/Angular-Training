@@ -47,8 +47,9 @@ export class TaskService {
     return this.webReqService.post(`lists/${listId}/tasks`, { title });
   }
 
-  complete(task: Task) {
-    return this.webReqService.patch(`lists/${task._listId}/tasks/${task._id}`, {
+  complete(task) {
+    console.log(task)
+    return this.webReqService.patch(`lists/${task._listid}/tasks/${task._id}`, {
       completed: !task.completed
     });
   }

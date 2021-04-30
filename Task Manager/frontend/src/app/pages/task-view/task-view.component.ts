@@ -35,8 +35,6 @@ export class TaskViewComponent implements OnInit {
         }
       }
     )
-
-  
     this.taskservice.getLists().subscribe((lists: List[]) => {
       this.lists = lists;
     })
@@ -45,6 +43,31 @@ export class TaskViewComponent implements OnInit {
   createNewList(){
     this.taskservice.createList('Testing').subscribe((response:any)=>{
       console.log(response)
+    })
+  }
+
+  onTaskClick(task: Task) {
+
+    console.log(task)
+    // we want to set the task to completed
+    this.taskservice.complete(task).subscribe(() => {
+      // the task has been set to completed successfully
+      console.log("Completed successully!");
+      task.completed = !task.completed;
+    })
+  }
+
+  onDeleteListClick() {
+    this.taskservice.deleteList(this.selectedListId).subscribe((res: any) => {
+      this.router.navigate(['/lists']);
+      console.log(res);
+    })
+  }
+
+  onDeleteTaskClick(id: string) {
+    this.taskservice.deleteTask(this.selectedListId, id).subscribe((res: any) => {
+      this.tasks = this.tasks.filter(val => val._id !== id);
+      console.log(res);
     })
   }
 

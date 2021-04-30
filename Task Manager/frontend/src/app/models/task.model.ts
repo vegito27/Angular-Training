@@ -1,6 +1,6 @@
 export class Task {
     _id: string;
-    _listId: string;
+    _listid: string;
     title: string;
     completed: boolean;
 }
