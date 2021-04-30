@@ -14,7 +14,7 @@ const {list,task,User}=require('./db/model')
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Methods", "GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-access-token, x-refresh-token, _id");
     res.header(
         'Access-Control-Expose-Headers',
         'x-access-token, x-refresh-token'
@@ -117,7 +117,7 @@ app.post('/lists',authenticate,(req,res)=>{
 
 app.patch('/lists/:id',authenticate,(req,res)=>{
     list.findOneAndUpdate({_id:req.params.id,_userId:req.user_id},{$set:req.body}).then(()=>{
-        res.sendStatus(200)
+        res.send({ 'message': 'updated successfully'});
     })
 })
 
@@ -302,8 +302,6 @@ app.post('/users/login', (req, res) => {
     });
 })
 
-
-
 /* HELPER METHODS */
 let deleteTasksFromList = (_listId) => {
     Task.deleteMany({
@@ -312,7 +310,6 @@ let deleteTasksFromList = (_listId) => {
         console.log("Tasks from " + _listId + " were deleted!");
     })
 }
-
 
 app.listen(3001,()=>{
     console.log("server is listening on port 3000")
