@@ -30,6 +30,8 @@ export class AuthService {
     return this.webService.signup(email, password).pipe(
       shareReplay(),
       tap((res: HttpResponse<any>) => {
+        console.log(res);
+
         // the auth tokens will be in the header of this response
         this.setSession(res.body._id, res.headers.get('x-access-token'), res.headers.get('x-refresh-token'));
         console.log("Successfully signed up and now logged in!");
@@ -41,6 +43,15 @@ export class AuthService {
     this.removeSession();
 
     this.router.navigate(['/login']);
+  }
+
+  isvalidEmail(email){
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  isValidPassword(password){
+    return false
   }
 
   getAccessToken() {
@@ -58,7 +69,7 @@ export class AuthService {
   setAccessToken(accessToken: string) {
     localStorage.setItem('x-access-token', accessToken)
   }
-  
+
   private setSession(userId: string, accessToken: string, refreshToken: string) {
     localStorage.setItem('user-id', userId);
     localStorage.setItem('x-access-token', accessToken);

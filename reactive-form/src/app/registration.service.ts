@@ -11,8 +11,6 @@ export class RegistrationService {
   constructor(private _http : HttpClient) {}
 
   register(userData:any){
-
-   return  this._http.post<any>(this._url,userData)
-
+   return this._http.post<any>(this._url,userData)
   }
 }

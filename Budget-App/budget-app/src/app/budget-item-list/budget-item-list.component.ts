@@ -6,9 +6,9 @@ import { EditItemModelComponent } from '../edit-item-model/edit-item-model.compo
 
 export interface UpdateEvent{
   old:BudgetItem;
-  new:BudgetItem 
-    
+  new:BudgetItem    
 }
+
 @Component({
   selector: 'app-budget-item-list',
   templateUrl: './budget-item-list.component.html',
@@ -32,7 +32,6 @@ export class BudgetItemListComponent implements OnInit {
 
   onCardClicked(item:BudgetItem){
     // show the edit modal
-
     const dialogRef=this.dialog.open(EditItemModelComponent,{
       width:'580px',
       data:item
@@ -40,20 +39,12 @@ export class BudgetItemListComponent implements OnInit {
 
   dialogRef.afterClosed().subscribe(result=>{
     // check if result has value
-
     if(result){
       this.update.emit({
         old:item,
         new:result
       })
-   
-   
     }
-
-
   })
-
-
 }
-
 }

@@ -11,13 +11,12 @@ export class EditItemModelComponent implements OnInit {
 
   // @Input() item:BudgetItem
 
-  constructor(public dialogRef:MatDialogRef<EditItemModelComponent>,@Inject(MAT_DIALOG_DATA) public item:BudgetItem) { }
+  constructor(public dialogRef:MatDialogRef<EditItemModelComponent>,
+    @Inject(MAT_DIALOG_DATA) public item:BudgetItem) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmitted(updatedItem:BudgetItem){
-    
     this.dialogRef.close(updatedItem)
   }
 

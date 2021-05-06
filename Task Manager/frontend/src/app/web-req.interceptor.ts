@@ -15,6 +15,8 @@ export class WebReqInterceptor implements HttpInterceptor {
 
   accessTokenRefreshed: Subject<any> = new Subject();
 
+  mymail:boolean
+
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
     // Handle the request
@@ -24,6 +26,7 @@ export class WebReqInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         console.log(error);
+
 
         if (error.status === 401) {
           // 401 error so we are unauthorized
@@ -68,7 +71,7 @@ export class WebReqInterceptor implements HttpInterceptor {
         })
       )
     }
-    
+
   }
 
 

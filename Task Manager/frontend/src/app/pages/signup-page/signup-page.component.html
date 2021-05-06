@@ -1,8 +1,8 @@
 <div class="centered-content">
     <div class="white-box">
-  
+
       <h1 class="title has-text-primary">Sign up</h1>
-      
+
       <div class="field">
         <p class="control has-icons-left has-icons-right">
           <input #emailInput class="input has-background-light" type="email" placeholder="Email">
@@ -10,6 +10,7 @@
             <i class="fas fa-envelope"></i>
           </span>
         </p>
+          <small class="small is-danger" *ngIf="emailValid">**This field is required</small>
       </div>
       <div class="field">
         <p class="control has-icons-left">
@@ -18,6 +19,7 @@
             <i class="fas fa-lock"></i>
           </span>
         </p>
+        <small class="small" *ngIf="true">**Password length must be of legth 8</small>
       </div>
       <div class="field" style="display: flex; justify-content: flex-end;">
         <p class="control">
@@ -27,8 +29,8 @@
         </p>
       </div>
       <br>
-  
+
       <p class="has-text-grey">Already got an account? <a routerLink="/login">Login</a> now!</p>
-  
+
     </div>
   </div>

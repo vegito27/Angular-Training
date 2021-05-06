@@ -202,9 +202,8 @@ export class AppComponent implements OnInit {
   }
 
   async changeBgImage(){
-
     this.loadingBgImage=true
-    
+
    const result= await fetch('https://source.unsplash.com/random/1920x1080',{
       method:'HEAD'
     })
@@ -213,7 +212,6 @@ export class AppComponent implements OnInit {
       return this.changeBgImage()
     }
     this.backgrounds.push(result.url)
-
   }
 
   onBGImageLoad(imgEvent:Event){

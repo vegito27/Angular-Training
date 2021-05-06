@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainPageComponent } from './main-page/main-page.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { BudgetItemListComponent } from './budget-item-list/budget-item-list.component';
 import { BudgetItemCardComponent } from './budget-item-list/budget-item-card/budget-item-card.component';
@@ -14,11 +13,10 @@ import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
-    MainPageComponent,
     AddItemComponent,
     BudgetItemListComponent,
     BudgetItemCardComponent,
-    EditItemModelComponent
+    EditItemModelComponent,
   ],
   imports: [
     BrowserModule,

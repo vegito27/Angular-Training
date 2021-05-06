@@ -28,8 +28,7 @@ export class AppComponent {
     }
 
     onSubmit(userForm){
-      // console.log(this.userModel)
-      console.log(userForm)
+      
       this.submitted=true
       // return this._enrolmentService.enroll(this.userModel).subscribe(
       //   data=>console.log('Success',data),
