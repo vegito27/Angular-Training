@@ -1,0 +1,139 @@
+<!-- Default form register -->
+<div class="form-wrapper">
+    <form  class="text-center border border-light p-5" [formGroup]="userForm"  (ngSubmit)="SignUp()" >
+        <p class="h4 mb-4">Sign Up</p>
+
+        <div class="form-row mb-4">
+            <div class="col">
+                <input 
+                type="text" 
+                id="defaultRegisterFormFirstName" 
+                formControlName="firstName" 
+                class="form-control" 
+                placeholder="First name">
+            </div>
+
+            <div class="col">
+                <input 
+                type="text" 
+                id="defaultRegisterFormLastName" 
+                formControlName="lastName" 
+                class="form-control"
+                placeholder="Last name">
+            </div>
+        </div>
+
+        <!-- UserName -->
+        <input 
+            type="text" 
+            id="defaultRegisterFormEmail" 
+            class="form-control mb-4" 
+            formControlName="userName" 
+            placeholder="UserName">
+
+        <!-- E-mail -->
+        <input 
+            type="email" 
+            id="defaultRegisterFormEmail" 
+            class="form-control mb-4" 
+            formControlName="email" 
+            placeholder="E-mail">
+
+         <!-- Phone number -->
+
+         <input 
+            type="tel" 
+            id="defaultRegisterPhonePassword"
+            formControlName="phone" 
+            class="form-control" 
+            placeholder="Phone number" 
+            aria-describedby="defaultRegisterFormPhoneHelpBlock"
+            >
+
+         <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+         Optional - for two-step authentication
+         </small>
+
+        <div class=" mb-4">   
+            <span style="float:left"> Choose the User Type:</span>
+             <div class="custom-control custom-checkbox custom-control-inline">
+                 <input 
+                    type="checkbox" 
+                    formControlName="isAdmin" 
+                    class="custom-control-input" 
+                    id="defaultInline1" 
+                    (click)="toggle()" 
+                    [checked]="ischecked">
+
+                 <label class="custom-control-label" for="defaultInline1">Admin</label>
+             </div>
+             
+             <div class="custom-control custom-checkbox custom-control-inline">
+                 <input 
+                 type="checkbox" 
+                 class="custom-control-input" 
+                 id="defaultInline2" 
+                 (click)="toggle()" 
+                 [checked]="!ischecked" >
+                 <label class="custom-control-label" for="defaultInline2">Normal User</label>
+             </div>
+         </div>
+        
+           <!-- Password -->
+        <input 
+            type="password" 
+            id="defaultRegisterFormPassword" 
+            formControlName="password" 
+            class="form-control" 
+            placeholder="Password" 
+            aria-describedby="defaultRegisterFormPasswordHelpBlock">
+        <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+        At least 8 characters and 1 digit
+        </small>
+
+         <!-- Password -->
+         <input type="password" 
+            id="defaultRegisterFormPassword" 
+            formControlName="confirmPassword" 
+            class="form-control" 
+            placeholder="Confirm Password" 
+            aria-describedby="defaultRegisterFormPasswordHelpBlock">
+         <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+         </small>
+
+        <!-- Newsletter -->
+        <div class="row">
+        <!-- <div class="col-md-6 mx-auto d-flex justify-content-center">
+            <mdb-checkbox [default]="true">Subscribe to our newsletter</mdb-checkbox>
+        </div> -->
+        </div>
+
+        <!-- Sign up button -->
+        <button mdbBtn color="info" block="true" class="my-4" type="submit" >Sign in</button>
+
+        <!-- Social register -->
+        <p>or sign up with:</p>
+
+        <a type="button" class="light-blue-text mx-2">
+        <mdb-icon fab icon="facebook"></mdb-icon>
+        </a>
+        <a type="button" class="light-blue-text mx-2">
+        <mdb-icon fab icon="twitter"></mdb-icon>
+        </a>
+        <a type="button" class="light-blue-text mx-2">
+        <mdb-icon fab icon="linkedin"></mdb-icon>
+        </a>
+        <a type="button" class="light-blue-text mx-2">
+        <mdb-icon fab icon="github"></mdb-icon>
+        </a>
+
+        <hr>
+
+        <!-- Terms of service -->
+        <p>By clicking
+        <em>Sign up</em> you agree to our
+        <a href="" target="_blank">terms of service</a></p>
+
+    </form>
+    <!-- Default form register -->
+</div>    

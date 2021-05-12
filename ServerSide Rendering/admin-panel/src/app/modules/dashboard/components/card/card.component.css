@@ -1,0 +1,39 @@
+.card {
+	min-width: 250px;
+	height: 80px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+	margin-bottom: 15px;
+	cursor: pointer;
+	color: white;
+}
+
+.card h5 {
+	font-weight: 400;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 10px;
+}
+
+h5 h6 {
+	font-size: larger;
+	font-weight: 400;
+}
+
+.card:hover {
+	transform: scale(1.01);
+}
+
+.red-bg {
+	background-color: #ae27b0;
+}
+
+.blue-bg {
+	background-color: #03a9f4f2;
+}
+
+.green-bg {
+	background-color: #2eb85c;
+}
