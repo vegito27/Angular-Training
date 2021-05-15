@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-graph',
@@ -6,6 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./graph.component.css']
 })
 export class GraphComponent {
+
+  constructor(){}
+
+  @Input('user') user: any
+
+
+  currentDate=new Date()
 
   public chartType: string = 'pie';
 

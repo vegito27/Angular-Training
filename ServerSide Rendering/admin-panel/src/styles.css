@@ -1,5 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
+/* @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400&display=swap');
+
+/* * {
+	font-family: 'PT Sans', sans-serif;
+} */
+
 .red-bg {
 	background-color: red;
 }
@@ -23,7 +31,7 @@
 }
 
 .shadow {
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	/* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
 	transition: 0.3s;
 }
 
@@ -33,7 +41,10 @@ body {
 }
 body {
 	margin: 0;
-	font-family: Roboto, "Helvetica Neue", sans-serif;
+	/* font-family: Roboto, "Helvetica Neue", sans-serif; */
+	/* font-family: "pt-sans-bold", sans-serif; */
+	font-family: 'PT Sans', sans-serif;
+	background-color: #f6f8fa;
 }
 
 .example-container {
@@ -43,6 +54,16 @@ body {
 	left: 0;
 	right: 0;
 	background: #eee;
+}
+
+.bg-white {
+	background-color: white;
+}
+.addtions {
+	margin: auto;
+	width: 100%;
+	padding: 20px 30px;
+	margin-top: 20px;
 }
 
 @media (min-width: 576px) {

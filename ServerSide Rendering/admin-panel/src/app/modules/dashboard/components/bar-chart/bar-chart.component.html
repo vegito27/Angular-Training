@@ -1,6 +1,10 @@
-<div class="shadow" style="display: block;min-width: 500px;padding:5px 15px;margin-top: 15px;">
-    <canvas mdbChart
-       
+<div class="bg-white responsive addtions bar-card" >
+    
+    <h4 style="font-size: 1.13rem;font-weight: 500;">Last 7 days Registered Users Data:</h4>
+    <canvas mdbChart 
+        responsive="true"
+        class="single-wrapper"
+        style="max-width:580px;height:300px;margin-top: 25px;margin:auto;"
         [chartType]="chartType"
         [datasets]="chartDatasets"
         [labels]="chartLabels"

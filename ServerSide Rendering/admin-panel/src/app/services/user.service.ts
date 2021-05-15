@@ -7,16 +7,20 @@ import { User } from '../models/user';
 })
 export class UserService {
 
-  base_url="http://localhost:2000/user"
+  base_url="http://localhost:4000/user"
 
   constructor(private _http:HttpClient) { }
 
   addUser(data){
-
-    // console.log(data)
-
     return this._http.post<any>(this.base_url,data)
-
   }
 
+  getUser(){
+    return this._http.get<any>(this.base_url)
+  }
+
+  delete(id){    
+    console.log(this.base_url+`/${id}`)
+    return this._http.delete<any>(this.base_url+`/${id}`)
+  }
 }

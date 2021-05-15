@@ -1,4 +1,5 @@
 export class User{
+    [x: string]: string | number | Date| Boolean;
     constructor(
         public firstName:string,
         public lastName:string,

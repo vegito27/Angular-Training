@@ -1,0 +1,19 @@
+.graph-card {
+	display: block;
+	background-color: white;
+	padding: 10px;
+	/* max-width: 600px; */
+	margin-top: 20px;
+	border-radius: 0.3125rem;
+	text-align: center;
+}
+
+.graph-card h4 {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.single-wrapper {
+	display: flex;
+	justify-content: center;
+}

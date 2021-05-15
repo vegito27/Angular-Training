@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { nextTick } from 'process';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-table',
@@ -7,22 +11,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableComponent implements OnInit {
 
-  elements: any = [
-    {id: 1, username: 'Mark', email: 'trishabh@gmail.com', posts: 10},
-    {id: 2, username: 'Jacob', email: 'rishabh@gmail.comton', posts: 20},
-    {id: 3, username: 'Larry', email: 'trishabh@gmail.com', posts: 30},
-    {id: 4, username: 'Rishabh', email: 'trishabh@gmail.com', posts: 40},
-    {id: 5, username: 'Tripathi', email: 'trishabh@gmail.com', posts: 50},
-    {id: 6, username: 'Tripathi', email: 'trishabh@gmail.com', posts: 50},
-    {id: 7, username: 'Tripathi', email: 'trishabh@gmail.com', posts: 50},
-    
-  ];
+  @Input('user') user:any
+  @Input('size') size:any
+  @Output() deleteUser=new EventEmitter
 
-  headElements = ['ID', 'User', 'Email', 'Posts','Actions'];
 
-  constructor() { }
+
+  modifiedArray;
+  index:number=1
+  hide:boolean=false
+  linkTracker=1
+
+
+  // User:any=this.user.slice(0,6)
+
+
+  headElements=['#','Username','Phone',"Posts","Action"]
+  constructor(private _userservice:UserService) { }
+
 
   ngOnInit(): void {
+    //getting undefined
+    // console.log(this.user.length)
   }
 
+  implementPaginate(ref:any){
+    console.log(ref)
+    
+  }
+
+  increment(i){
+    let modulo=this.size/6;
+   let totalPages=modulo===0?modulo:modulo+1
+  
+    if(this.index<=totalPages-1){
+      this.index++;
+      // if(this.linkTracker%3==0){
+      //   this.linkTracker=0
+      // }else{
+      //   this.linkTracker++
+      // }
+    }
+  }
+
+  decrement(){
+    if(this.index>0){
+    this.index--;
+    }
+  }
+
+  fireEvent(id){
+    this.deleteUser.emit(id)
+  }
 }

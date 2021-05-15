@@ -1,32 +1,62 @@
-<div class="data-table">
-    <div class="data">
-        <table mdbTable >
-            <thead class="special-color-x white-text">
+<div class="additions data-table bg-white" >
+    <div class="data" >
+        <h4 class="bold" style="font-size: 1.13rem;font-weight: 500;"> User List:</h4>
+        <table mdbTable class="table table-responsive-xxl" hover="true" >
+            <thead class="table-light ">
               <tr>
-                <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                <th style="font-size: 0.875rem;font-weight: 500;" *ngFor="let head of headElements" scope="col">{{head}} </th>
               </tr>
             </thead>
-            <tbody>
-              <tr mdbTableCol *ngFor="let el of elements">
-                <th scope="row">{{el.id}}</th>
-                <td>{{el.username}}</td>
-                <td>{{el.email}}</td>
-                <td>{{el.posts }}</td>
-                <td><button type="button" size="sm" style="margin: 0;padding: .5rem 0.7rem;font-size: .60rem;" mdbBtn color="danger" mdbWavesEffect>Delete</button></td>
-              </tr>
+            <tbody *ngIf="user!=''; else noUserFound">        
+              <tr mdbTableCol  *ngFor="let el of (user?user.slice(6*(index-1),6*index):[]);index as i;">
+                    <th scope="row">{{6*(index-1)+i+1}}</th>
+                    <td>{{el.userName}}</td>
+                    <td>{{el.phone}}</td>
+                    <td>{{size}}</td>
+                    <td><button type="button" size="sm" style="margin: 0;padding: .5rem 0.7rem;font-size: .60rem;" (click)="fireEvent(el._id)"  mdbBtn color="danger" mdbWavesEffect><i  class="fas fa-trash"></i></button></td>
+                </tr>
+            
             </tbody>
+
+            <ng-template #noUserFound>
+                <tbody >
+                    <td colspan="5" class="vertical-align:middle">
+                       <div class="not-found " color="info"> Nothing Here To display!</div>
+                    </td>
+                </tbody>
+            </ng-template>
+            <tfoot></tfoot>
           </table>
+
+
           <div class="paginate">
-          <app-pagiation class="center"></app-pagiation>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pg-blue">
+
+                  <li class="page-item " [ngClass]="{'disabled':index==1}">
+                    <a class="page-link"  mdbWavesEffect (click)="decrement()">Previous</a>
+                  </li>
+                  <li class="page-item" [ngClass]="{'active':linkTracker===1}" ><a class="page-link" mdbWavesEffect #ref (click)="implementPaginate(1)" >{{index}}</a></li>
+
+                  <li class="page-item"  [ngClass]="{'active':linkTracker===2}">
+                    <a class="page-link"  #ref2 mdbWavesEffect (click)="implementPaginate(ref2)">{{index+1}} <span class="sr-only">(current)</span></a>
+                  </li>
+            
+                  <li class="page-item" [ngClass]="{'active':linkTracker===0}" #ref3 (click)="implementPaginate(ref3)"><a class="page-link" mdbWavesEffect>{{index+2}}</a></li>
+            
+                  <li class="page-item ">
+                    <a class="page-link" mdbWavesEffect (click)="increment(index)">Next</a>
+                  </li>
+
+                </ul>
+              </nav>
           </div>
     </div>
-</div>
+</div> 
 
-<!-- 
-<div class="container">
+<!-- <div class="container">
     <table mdbTable #tableEl="mdbTable" class="z-depth-1">
       <thead>
-          .btn.btn-sm {
     
       <tr>
         <th *ngFor="let head of headElements; let i = index" scope="col">{{head}}
@@ -34,20 +64,20 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let el of elements; let i = index">
+      <tr *ngFor="let el of user; let i = index">
         <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
-            scope="row">{{el.id}}</th>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.first}}</td>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.last}}</td>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.handle}}</td>
+            scope="row">{{el._id}}</th>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.userName}}</td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.phone}}</td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.posts}}</td>
       </tr>
       </tbody>
       <tfoot class="grey lighten-5 w-100">
       <tr>
         <td colspan="4">
-          <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+          <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="user"></mdb-table-pagination>
         </td>
       </tr>
       </tfoot>
     </table>
-  </div> -->
+    </div> -->

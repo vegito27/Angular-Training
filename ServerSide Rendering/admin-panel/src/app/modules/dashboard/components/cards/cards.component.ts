@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input,OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-cards',
@@ -8,10 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class CardsComponent implements OnInit {
 
   bg:boolean=true
-
+  totalUser:number
   text:any
-
-  redColor:string
+  @Input('size') Total_Users:any
 
   constructor() { }
 

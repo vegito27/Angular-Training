@@ -10,8 +10,9 @@ export class CardComponent implements OnInit {
   @Input('red') red:string
   @Input('yellow') yellow:string
   @Input('green') green:string
+  
+  @Input('length') userCount
 
-  userCount:number=10
   postcount:number=20
   studentUsercount:number=30
 

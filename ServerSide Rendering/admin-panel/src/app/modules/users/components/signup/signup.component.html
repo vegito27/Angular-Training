@@ -1,16 +1,22 @@
 <!-- Default form register -->
 <div class="form-wrapper">
     <form  class="text-center border border-light p-5" [formGroup]="userForm"  (ngSubmit)="SignUp()" >
-        <p class="h4 mb-4">Sign Up</p>
+        <h3 class="h3 mb-4" style="color:#f13f7c">Sign Up</h3>
 
         <div class="form-row mb-4">
             <div class="col">
                 <input 
                 type="text" 
-                id="defaultRegisterFormFirstName" 
+                id="defaultRegisterFormFirstName"
+                [class.is-invalid]="firstName.invalid && (firstName.touched || firstName.dirty)"
+                [class.is-valid]="firstName.valid"
                 formControlName="firstName" 
                 class="form-control" 
                 placeholder="First name">
+                <div *ngIf="firstName.invalid && firstName.touched">
+                    <small *ngIf="firstName.errors?.required" style="color:red">FirstName is required***</small>
+                    <small *ngIf="firstName.errors?.minlength" style="color:red">minLength should be of 4 characters***</small>
+                </div>
             </div>
 
             <div class="col">
@@ -19,42 +25,71 @@
                 id="defaultRegisterFormLastName" 
                 formControlName="lastName" 
                 class="form-control"
-                placeholder="Last name">
-            </div>
+                placeholder="Last name">            
+            </div>            
         </div>
 
         <!-- UserName -->
-        <input 
-            type="text" 
-            id="defaultRegisterFormEmail" 
-            class="form-control mb-4" 
-            formControlName="userName" 
-            placeholder="UserName">
+        <div class="mb-4">
+            <input 
+                type="text" 
+                id="defaultRegisterFormEmail" 
+                class="form-control" 
+                formControlName="userName" 
+                [class.is-invalid]="userName.invalid && (userName.touched)"
+                [class.is-valid]="userName.valid"
+                placeholder="UserName">
+                <div *ngIf="userName.invalid && (userName.touched || userName.dirty)">
+                    <small *ngIf="userName.errors?.required" style="color:red">UserName is required****</small>
+                    <small *ngIf="userName.errors?.pattern" style="color:red">Username must contain atleat 6 char  [A-Z,a-z,0-9]</small>
+                </div>
+
+                
+        </div>
+            
 
         <!-- E-mail -->
-        <input 
-            type="email" 
-            id="defaultRegisterFormEmail" 
-            class="form-control mb-4" 
-            formControlName="email" 
-            placeholder="E-mail">
+        <div class="mb-4">
+            <input 
+                type="email" 
+                id="defaultRegisterFormEmail" 
+                class="form-control"
+                [class.is-invalid]="email.invalid && (email.touched || email.dirty)" 
+                [class.is-valid]="email.valid" 
+                formControlName="email" 
+                placeholder="E-mail">
+                <div *ngIf="email.invalid && (email.touched || email.dirty)">
+                    <small *ngIf="email.errors?.required" style="color:red">Email is required***</small>
+                    <small *ngIf="email.errors?.email" style="color:red">Please Enter valid email***</small>
+                </div>
+                <small *ngIf="Error?.email" style="color:red">***OOPs! {{Error?.email}}! Please try another email</small>
+            
+        </div>
 
          <!-- Phone number -->
 
          <input 
-            type="tel" 
+            type="text"
+            onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode==43'
             id="defaultRegisterPhonePassword"
             formControlName="phone" 
             class="form-control" 
             placeholder="Phone number" 
             aria-describedby="defaultRegisterFormPhoneHelpBlock"
+            [class.is-invalid]="phone.invalid && (phone.touched || phone.dirty)"
+            [class.is-valid]="phone.valid"
             >
+        <div  *ngIf="phone.invalid && (phone.touched || phone.dirty)" class="mb-4">
+            <small  *ngIf="phone.errors?.required" id="defaultRegisterFormPhoneHelpBlock" style="color:red" class="form-text mb-4">
+                Phone Number is required****
+                </small>
+            <small *ngIf="phone.errors?.minlength" style="color:red">Minlength should be 10 and starts with +91</small>
+           
+         </div>
+         <small *ngIf="Error?.phone" style="color:red">**{{Error?.phone}}! </small>
+            
 
-         <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
-         Optional - for two-step authentication
-         </small>
-
-        <div class=" mb-4">   
+        <div class="mt-4 mb-4">   
             <span style="float:left"> Choose the User Type:</span>
              <div class="custom-control custom-checkbox custom-control-inline">
                  <input 
@@ -64,7 +99,6 @@
                     id="defaultInline1" 
                     (click)="toggle()" 
                     [checked]="ischecked">
-
                  <label class="custom-control-label" for="defaultInline1">Admin</label>
              </div>
              
@@ -80,26 +114,39 @@
          </div>
         
            <!-- Password -->
-        <input 
-            type="password" 
-            id="defaultRegisterFormPassword" 
-            formControlName="password" 
-            class="form-control" 
-            placeholder="Password" 
-            aria-describedby="defaultRegisterFormPasswordHelpBlock">
-        <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-        At least 8 characters and 1 digit
-        </small>
+           <div class="mb-4">
+            <input 
+                type="password" 
+                id="defaultRegisterFormPassword" 
+                formControlName="password" 
+                class="form-control" 
+                placeholder="Password" 
+                [class.is-invalid]="password.invalid && (password.touched)"
+                [class.is-valid]="password.valid"
+                aria-describedby="defaultRegisterFormPasswordHelpBlock"
+                >
+                <div class="mt-1" *ngIf="password.invalid && (password.touched || password.dirty)">
+                    <small *ngIf="password.errors?.pattern" style="color:red" id="defaultRegisterFormPasswordHelpBlock" style="color:red" class="form-text mb-4">
+                    Password must contain uppercase,lowercase number and special character
+                    </small>
+                </div>
+            </div>
 
          <!-- Password -->
-         <input type="password" 
+         <input 
+            type="password"
             id="defaultRegisterFormPassword" 
             formControlName="confirmPassword" 
             class="form-control" 
-            placeholder="Confirm Password" 
+            [class.is-invalid]="userForm.errors?.misMatch"
+            placeholder="Confirm Password"
+            [class.is-valid]="userForm.valid"
             aria-describedby="defaultRegisterFormPasswordHelpBlock">
-         <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-         </small>
+            <div class="mb-4">
+                <small  *ngIf="userForm.errors?.misMatch" id="defaultRegisterFormPasswordHelpBlock" style="color:red" class="form-text mb-4" >
+                    Password does not match
+                </small>
+            </div>
 
         <!-- Newsletter -->
         <div class="row">
@@ -109,7 +156,7 @@
         </div>
 
         <!-- Sign up button -->
-        <button mdbBtn color="info" block="true" class="my-4" type="submit" >Sign in</button>
+        <button  [disabled]="!userForm.valid" mdbBtn  color="success" block="true" class="my-4" type="submit" >Sign in</button>
 
         <!-- Social register -->
         <p>or sign up with:</p>

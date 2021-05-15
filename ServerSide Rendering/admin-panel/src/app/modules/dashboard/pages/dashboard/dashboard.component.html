@@ -1,12 +1,12 @@
 <div class="dashboard">
   <app-breadcrumb></app-breadcrumb>
-  <app-cards></app-cards>
+  <app-cards [size]="size"></app-cards>
 
-  <div class="user-data">
-    <app-table></app-table>
-    <div >
-        <app-bar-chart></app-bar-chart>
-        <app-graph></app-graph>
+  <div class="user-data responsive-sm" >
+    <app-table (deleteUser)="deleteUser($event)" [user]="user" [size]="size"></app-table>
+    <div>
+        <app-bar-chart [user]="user"></app-bar-chart>
+        <app-graph [user]="user"></app-graph>
     </div>
   </div>
 </div>
