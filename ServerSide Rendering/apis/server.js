@@ -4,6 +4,8 @@ const mongoose=require("mongoose");
 const app=express();
 
 app.use(express.json())
+var cors = require('cors');
+app.use(cors());
 
 const {MONGO_URI}=require('./config/uri')
 
@@ -19,6 +21,7 @@ mongoose.connect(MONGO_URI,{ useUnifiedTopology: true , useNewUrlParser: true })
 const connection=mongoose.connection;
 
 const users=require('./routes/users')
+const profile=require('./routes/profiles')
 
 
 connection.once("open",()=>{
@@ -28,7 +31,9 @@ connection.once("open",()=>{
 
 app.use('/user',users)
 
+app.use('',profile)
 
-app.listen(4000, () => {
-    console.log("server start at 4000");
+
+app.listen(4004, () => {
+    console.log("server start at 4004");
   });	 

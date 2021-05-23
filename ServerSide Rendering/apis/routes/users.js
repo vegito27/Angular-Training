@@ -9,7 +9,13 @@ const User=require('../models/user')
 const ObjectId=require('mongodb').ObjectId
 
 const validateRegisterInput=require('../Validations/register')
+const validateLoginInput=require('../Validations/login')
 
+require('../auth/auth')
+
+
+
+// create user route
 router.post('/',async (req,res)=>{
 
     console.log(req.body.userName)
@@ -57,6 +63,7 @@ router.post('/',async (req,res)=>{
 })
 
 
+// get normal Users
 router.get('/',async (req,res)=>{
     try{
         const users=await User.find({isAdmin:false})
@@ -68,6 +75,7 @@ router.get('/',async (req,res)=>{
 })
 
 
+// delete normal user
 router.delete('/:id',async (req,res)=>{
     let id=req.params.id
     
@@ -81,15 +89,17 @@ router.delete('/:id',async (req,res)=>{
     }
 })
 
+
+
+/*-----------------------------------------------------------------------------------------------*/
+
+// Test Routes
+
 router.get('/weekUsers',(req,res)=>{
 
     let today=new Date()
 
     today.setDate(today.getDate()-7) 
-    
-    // console.log(today1)
-
-    console.log(today)
 
     User.find()
     .populate('user.date')
@@ -104,6 +114,92 @@ router.get('/weekUsers',(req,res)=>{
 })
 
 
+// Login route for all type of users
+router.post('/login',async(req,res)=>{
+
+    const {error,valid}=validateLoginInput(req.body)
+    console.log("pich",valid)
+
+    if(!valid){
+        return res.status(200).send({error:error})
+    }
+
+    try{
+        const user=await User.findOne({email:req.body.email})
+
+        console.log(user)
+
+        if(!user){
+            error.email="Email does not exists!"
+            res.status(201).send({error:error})
+
+        }else{
+
+            const user=await User.findOne({email:req.body.email,password:req.body.password})
+
+            if(!user){
+
+                error.password="Password does not match***"
+
+                res.status(201).send({error:error})
+            }else{
+                res.status(200).send(user)
+            }
+        }
+    }catch(e){
+        console.error(e)
+    }
+})
+
+
+// ************************Test***************************
+
+router.post(
+    '/signup',
+    passport.authenticate('signup', { session: false }),
+    async (req, res, next) => {
+      res.json({
+        message: 'Signup successful',
+        user: req.user
+      });
+    }
+  );
+
+
+  router.post(
+    '/login1',
+    async (req, res, next) => {
+      passport.authenticate(
+        'login',
+        async (err, user, info) => {
+          try {
+            if (err || !user) {
+              const error = new Error('An error occurred.');
+  
+              return next(error);
+            }
+  
+            req.login(
+              user,
+              { session: false },
+              async (error) => {
+                if (error) return next(error);
+  
+                const body = { _id: user._id, email: user.email };
+                const token = jwt.sign({ user: body }, 'TOP_SECRET');
+  
+                return res.json({ token });
+              }
+            );
+          } catch (error) {
+            return next(error);
+          }
+        }
+      )(req, res, next);
+    }
+  );
+  
+//   ****************************TEST************************************
 
 
 module.exports=router

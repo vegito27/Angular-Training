@@ -73,15 +73,11 @@ app.delete('/user/:id',(req,response)=>{
             response.send({"message":"deleted Successfully"})
 
              // db.close()
-
-          
         })
        
 
     })
 })
-
-// {"_id":{"$oid":"609bf36274f662d302d20cea"},"firstName":"Rishabh","lastName":"Tripathi","userName":"1234","email":"trishabh885@gmail.com","phone":"+447838195205","isAdmin":"","password":"","confirmPassword":""}
 
 
 

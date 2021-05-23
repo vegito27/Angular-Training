@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -8,15 +9,18 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class DashboardComponent implements OnInit {
 
-  user:any
+  user:User
   size:number
 
   constructor(private _userService:UserService) { }
 
   setUser(){
     this._userService.getUser().subscribe((response)=>{
-      this.user=response
-      this.size=response.length
+      this._userService.user=response
+      this._userService.size=response.length
+      
+      this.user=this._userService.user
+      this.size=this._userService.size
     })
   }
 
@@ -25,7 +29,11 @@ export class DashboardComponent implements OnInit {
   }
 
   updateUser(id){
-    this.user=this.user.filter(user=>user._id!==id)
+    this._userService.user=this._userService.user.filter(user=>user._id!==id)
+    this._userService.size=this._userService.user.length
+
+    this.user=this._userService.user
+    this.size=this._userService.size
 
   }
 

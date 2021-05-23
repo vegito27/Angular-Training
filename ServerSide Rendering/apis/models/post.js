@@ -11,8 +11,12 @@ const postSchema=new schema({
     },
     post:{ 
         type: String,
-        required: true,
-        trim: true
+        required: true
+    },
+    category:{
+        type:String,
+        required:true,
+        trim:true
     },
     date:{
 		type:String,

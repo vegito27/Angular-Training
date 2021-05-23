@@ -8,7 +8,6 @@
     <mat-icon> menu</mat-icon>
  </button> -->
   
-
     <!-- Navbar brand -->
     <mdb-navbar-brand><a class="navbar-brand" href="#"><img src="../../../../assets/images/articuno.png" width="40px" height="40px" style="filter: brightness(0) invert(1);margin-left: 10px;"></a></mdb-navbar-brand>
   </div>
@@ -16,16 +15,18 @@
     <links>
 
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link waves-light" mdbWavesEffect routerLink="/dashboard">Home<span class="sr-only">(current)</span></a>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="/dashboard">Home</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link waves-light" mdbWavesEffect>Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link waves-light" mdbWavesEffect>Pricing</a>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link waves-light" routerLink="/profile" mdbWavesEffect>Profile</a>
             </li>
+ 
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link waves-light" routerLink="/posts" mdbWavesEffect>Posts</a>
+          </li>
+
         </ul>
   
       <!-- Links -->
@@ -34,16 +35,16 @@
           <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="envelope"></mdb-icon> Contact<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="cog"></mdb-icon> Settings</a>
+          <a class="nav-link waves-light" mdbWavesEffect ><mdb-icon fas icon="cog"></mdb-icon> Settings</a>
         </li>
   
         <!-- Dropdown -->
-        <li class="nav-item dropdown" *ngIf="islogout" dropdown>
+        <li *ngIf="isAuthorised" class="nav-item dropdown" dropdown>
           <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-            <mdb-icon fas icon="user"></mdb-icon> Profile<span class="caret"></span></a>
+            <mdb-icon fas icon="user"></mdb-icon> UserName<span class="caret"></span></a>
           <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
             <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="logout()">Log out</a>
           </div>
         </li>
   

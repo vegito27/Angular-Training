@@ -1,0 +1,28 @@
+<!-- <ul class="nav nav-pills navtab-bg">
+    <li class="nav-item">
+        <a data-toggle="tab" aria-expanded="false" class="nav-link" (click)="load(0)"
+        [ngClass]="{'active-x':next===0}">
+            <i class="mdi mdi-face-profile mr-1"></i>About Me
+        </a>
+    </li>
+    <li class="nav-item">
+        <a  data-toggle="tab" aria-expanded="false" class="nav-link" (click)="load(1)"
+        [ngClass]="{'active-x':next==1}">
+            <i class="mdi mdi-settings-outline mr-1"></i>Update Info
+        </a>
+    </li>
+</ul>
+ -->
+
+<ul class="nav nav-pills navtab-bg">
+    <li class="nav-item" routerLinkActive='active-x'>
+        <a data-toggle="tab" aria-expanded="false" class="nav-link" routerLink='/profile/' [routerLinkActiveOptions]="{exact: true}" routerLinkActive='active-x' >
+            <i class="mdi mdi-face-profile mr-1"></i>About Me
+        </a>
+    </li>
+    <li class="nav-item" routerLinkActive='active-x'>
+        <a  data-toggle="tab" aria-expanded="false"  routerLink='/profile/update' class="nav-link" routerLinkActive='active-x' >
+            <i class="mdi mdi-settings-outline mr-1"></i>Update Info
+        </a>
+    </li>
+</ul>

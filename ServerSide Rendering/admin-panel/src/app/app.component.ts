@@ -10,4 +10,9 @@ export class AppComponent {
 
   isAuthenticated:boolean=false
 
+  Auth(response){
+
+    console.log("hi")
+
+  }
 }

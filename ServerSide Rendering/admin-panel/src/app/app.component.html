@@ -1,4 +1,5 @@
-<app-header></app-header>
+
+<app-header [isAuthenticated]="isAuthenticated"></app-header>
 <!-- 
 <div *ngIf="isAuthenticated;else authenticate">
     <app-dashboard></app-dashboard>
@@ -8,8 +9,8 @@
     <app-login routerLink="signup"></app-login>
 </ng-template> -->
 
-
-<router-outlet></router-outlet>
-
+<router-outlet ></router-outlet>
 
 <app-footer></app-footer>
+
+

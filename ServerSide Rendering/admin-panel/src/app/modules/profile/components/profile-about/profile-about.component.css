@@ -1,0 +1,49 @@
+.field-values {
+	/* border: 1px solid black; */
+	width: 60%;
+	padding-left: 20px;
+	display: flex;
+	justify-content: justify;
+	align-items: center;
+}
+
+.fields {
+	/* border: 1px solid black; */
+	width: 40%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+}
+
+.user-details {
+	/* border: 1px solid black; */
+	width: 90%;
+	margin: auto;
+}
+
+.user-detail {
+	display: flex;
+}
+
+.x {
+	
+	padding: 5px 8px;
+	margin: 4px;
+	text-align: center;
+}
+
+span {
+	margin-left: 2px;
+	color: white;
+	overflow-x: scroll
+}
+
+
+.bold{
+	font-weight: 900;
+	font-size: 15px
+}
+
+.font-color{
+	color: blue;
+}

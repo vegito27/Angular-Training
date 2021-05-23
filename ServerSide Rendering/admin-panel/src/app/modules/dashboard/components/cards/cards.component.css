@@ -1,12 +1,15 @@
 .cards {
-	width: 90%;
+	/* width: 90%; */
 	display: flex;
-	justify-content: space-between;
-	margin: auto;
+	/* justify-content: space-between; */
+	flex-direction: row;
+	/* flex-wrap: nowrap; */
+	/* margin: auto; */
 	padding: 20px 30px;
 	/* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
 	/* transition: 0.3s; */
-	background-color: white;
+	/* background-color: white; */
+	/* border: 1px solid black; */
 }
 
 .bg {
@@ -23,4 +26,36 @@
 
 .green {
 	background-color: green;
+}
+
+/* @media screen and (max-width: 768px) {
+	.cards {
+		display: flex;
+		flex-direction: column;
+	}
+} */
+
+.flex-container {
+	width: 90%;
+	margin: auto;
+	display: flex;
+	font-size: 30px;
+	text-align: center;
+	flex-direction: row;
+	/* border: 1px solid black; */
+}
+
+app-card {
+	background-color: white;
+	padding: 20px;
+	flex: 25%;
+}
+
+@media screen and (max-width: 768px) {
+	.flex-container {
+		flex-direction: column;
+	}
+	app-card {
+		padding: 10px 0;
+	}
 }

@@ -1,5 +1,5 @@
-<div class="cards responsive">
-    <app-card red="bg" [length]="Total_Users"></app-card>
+<div class="flex-container">
+    <app-card red="bg" [length]="Total_Users?Total_Users:0"></app-card>
     <app-card yellow="bg"></app-card>
     <app-card green="bg"></app-card>
 </div>

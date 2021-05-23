@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserslistComponent implements OnInit {
 
+  Auth(response){
+
+    console.log("hi")
+
+  }
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+ 
 
 }

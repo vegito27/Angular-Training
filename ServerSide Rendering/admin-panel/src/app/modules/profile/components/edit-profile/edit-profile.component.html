@@ -1,0 +1,214 @@
+<form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+    <h5 style="color:white;font-size: 13px;" class="mb-3 text-uppercase special-color-x color-white p-2"><i class="mdi mdi-account-circle mr-1 "></i> Personal Info</h5>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="firstname">First Name:</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="firstName" 
+                    id="firstname"
+                    placeholder="Enter first name">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="lastname">Last Name:</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="lastName" 
+                    id="lastname" 
+                    placeholder="Enter last name">
+            </div>
+        </div> 
+    </div> <!-- end row -->
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="firstname"> Gender:</label>
+                <select class="form-control browser-default custom-select" formControlName="gender">
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="lastname">Date Of Birth:</label>
+                <input 
+                    type="date" 
+                    class="form-control" 
+                    formControlName="DOB"  
+                    id="DOB" 
+                    placeholder="Enter last name">
+            </div>
+            <span class="focus-input100"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="userbio">About Me</label>
+                <textarea 
+                    class="form-control" 
+                    formControlName="aboutMe" 
+                    id="userbio" 
+                    rows="4" 
+                    placeholder="Write something...">
+                </textarea>
+            </div>
+        </div> <!-- end col -->
+    </div> <!-- end row -->
+
+    <div formGroupName="addressLine">
+    <h5 style="color:white;font-size: 13px;" class="mb-3 text-uppercase special-color-x color-white p-2"><i class="mdi mdi-home-circle mr-1 "></i> Address</h5>
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="userbio">Address:</label>
+                <textarea 
+                    class="form-control" 
+                    formControlName="address" 
+                    id="address" 
+                    rows="2" 
+                    placeholder="Enter your address here....">
+                </textarea>
+            </div>
+        </div> <!-- end col -->
+    </div>    
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="state">State:</label>
+                <select class="form-control browser-default custom-select" formControlName="state">
+                    <option>s1</option>
+                    <option>s2</option>
+                </select>
+                <!-- <input type="email" class="form-control" id="state" placeholder="Select state"> -->
+                <!-- <span class="form-text text-muted"><small>If you want to change email please <a href="javascript: void(0);">click</a> here.</small></span> -->
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="district">District:</label>
+                <select class="form-control browser-default custom-select" formControlName="district" aria-placeholder="Select District">
+                    <option>D1</option>
+                    <option>D2</option>
+                </select>
+                <!-- <input type="email" class="form-control" id="state" placeholder="Select state"> -->
+                <!-- <span class="form-text text-muted"><small>If you want to change email please <a href="javascript: void(0);">click</a> here.</small></span> -->
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="userpassword">City:</label>
+                <select class="form-control browser-default custom-select" formControlName="city" aria-placeholder="Select City">
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+                
+                <!-- <input type="password" class="form-control" id="userpassword" placeholder="Select city"> -->
+                <!-- <span class="form-text text-muted"><small>If you want to change password please <a href="javascript: void(0);">click</a> here.</small></span> -->
+            </div>
+        </div> <!-- end col -->
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="userpassword">Zip:</label>
+                <input 
+                    type="number" 
+                    class="form-control" 
+                    formControlName="zip" 
+                    id="zip" 
+                    placeholder="Enter zip code...">
+                <!-- <span class="form-text text-muted"><small>If you want to change password please <a href="javascript: void(0);">click</a> here.</small></span> -->
+            </div>
+        </div> <!-- end col -->
+    </div> <!-- end row -->
+</div>
+
+<div formGroupName="companyInfo">
+    <h5 style="color:white;font-size: 13px;" class="mb-3 text-uppercase special-color-x p-2">
+        <i class="mdi mdi-office-building mr-1"></i> Company Info
+    </h5>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="companyName">Company Name</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="companyName" 
+                    id="companyName" 
+                    placeholder="Enter company name">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="cwebsite">Website</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="webSite" 
+                    id="cwebsite" 
+                    placeholder="Enter website url">
+            </div>
+        </div> <!-- end col -->
+    </div> <!-- end row -->
+</div>
+
+<div formGroupName="social">
+    <h5 style="color:white;font-size: 13px;" class="mb-3 text-uppercase special-color-x p-2"><i class="mdi mdi-earth mr-1"></i> Social</h5>    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="social-gh">Github</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fab fa-github"></i></span>
+                    </div>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        formControlName="github" 
+                        id="social-gh" 
+                        placeholder="Username">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+        <div class="form-group">
+            <label for="social-lin">Linkedin</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fab fa-linkedin"></i></span>
+                </div>
+                <input 
+                    type="text" 
+                    formControlName="linkedin" 
+                    class="form-control" 
+                    id="social-lin" 
+                    placeholder="Url">
+            </div>
+        </div>
+    </div> 
+</div>   
+</div>
+    <div class="text-right">
+        <button type="submit" class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i> Save</button>
+    </div>
+</form>

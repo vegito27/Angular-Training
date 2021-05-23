@@ -1,25 +1,26 @@
 .card {
-	min-width: 250px;
-	height: 80px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
+	/* width: 250px; */
+	/* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+	transition: 0.3s;
 	margin-bottom: 15px;
 	cursor: pointer;
 	color: white;
+	padding: 10px 0;
+	/* display: flex;
+	justify-content: flex-start;
+	flex-wrap: nowrap; */
 }
 
 .card h5 {
 	font-weight: 400;
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
 	margin-top: 10px;
+	font-size: 20px;
 }
 
 h5 h6 {
 	font-size: larger;
 	font-weight: 400;
+	margin: 10px;
 }
 
 .card:hover {

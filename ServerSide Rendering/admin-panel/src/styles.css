@@ -24,6 +24,19 @@
 	background-color: #00bcd4 !important;
 }
 
+.orange-bg{
+    background-color: rgba(255, 166, 0, 0.699);
+
+}
+
+.info {
+	color: #00bcd4;
+}
+
+.text-white {
+	color: white;
+}
+
 .form-wrapper {
 	min-width: 400px;
 	max-width: 600px;
@@ -47,6 +60,10 @@ body {
 	background-color: #f6f8fa;
 }
 
+* {
+	font-family: PT Sans;
+}
+
 .example-container {
 	position: absolute;
 	top: 0;
@@ -66,23 +83,4 @@ body {
 	margin-top: 20px;
 }
 
-@media (min-width: 576px) {
-	mat-sidenav {
-		width: 60% !important;
-	}
-}
-@media (min-width: 768px) {
-	mat-sidenav {
-		width: 40% !important;
-	}
-}
-@media (min-width: 992px) {
-	mat-sidenav {
-		width: 30% !important;
-	}
-}
-@media (min-width: 1200px) {
-	mat-sidenav {
-		width: 30% !important;
-	}
-}
+

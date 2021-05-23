@@ -31,6 +31,16 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { UserPostsComponent } from './modules/posts/pages/user-posts/user-posts.component';
+import { ListPostComponent } from './modules/posts/components/list-post/list-post.component';
+import { ListProfileComponent } from './modules/profile/components/list-profile/list-profile.component';
+import { EditProfileComponent } from './modules/profile/components/edit-profile/edit-profile.component';
+import { ProfileComponent } from './modules/profile/pages/profile/profile.component';
+import { ProfileCardComponent } from './modules/profile/components/profile-card/profile-card.component';
+import { ProfileActionCardComponent } from './modules/profile/components/profile-action-card/profile-action-card.component';
+import { ProfileSocialLinksComponent } from './modules/profile/components/profile-social-links/profile-social-links.component';
+import { ProfileAboutComponent } from './modules/profile/components/profile-about/profile-about.component';
+import {NgxWebstorageModule} from 'ngx-webstorage'
 // import { SidebarOpenDirective } from './directives/sidebar-open.directive'; 
 
 @NgModule({
@@ -57,10 +67,21 @@ import { HttpClientModule } from '@angular/common/http';
     CardComponent,
     TableComponent,
     BarChartComponent,
+    UserPostsComponent,
+    ListPostComponent,
+    CreatePostComponent,
+    ProfileComponent,
+    ListProfileComponent,
+    EditProfileComponent,
+    ProfileCardComponent,
+    ProfileActionCardComponent,
+    ProfileSocialLinksComponent,
+    ProfileAboutComponent
+  
     // SidebarOpenDirective
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule,
@@ -70,7 +91,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxWebstorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

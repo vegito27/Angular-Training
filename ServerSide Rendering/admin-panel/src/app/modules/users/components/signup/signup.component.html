@@ -1,18 +1,21 @@
 <!-- Default form register -->
 <div class="form-wrapper">
-    <form  class="text-center border border-light p-5" [formGroup]="userForm"  (ngSubmit)="SignUp()" >
-        <h3 class="h3 mb-4" style="color:#f13f7c">Sign Up</h3>
+    <form  class="text-center border border-light pl-5 pr-5 pt-4" [formGroup]="userForm"  (ngSubmit)="SignUp()" >
+        <h1 class="mb-4" style="color:#e6437c;padding:10px 0;font-size: 30px;font-family: PT Sans;font-weight:900;">Sign Up</h1>
+        <br>
 
-        <div class="form-row mb-4">
+
+        <div class="form-row mb-4 mtn-1">
             <div class="col">
                 <input 
-                type="text" 
-                id="defaultRegisterFormFirstName"
-                [class.is-invalid]="firstName.invalid && (firstName.touched || firstName.dirty)"
-                [class.is-valid]="firstName.valid"
-                formControlName="firstName" 
-                class="form-control" 
-                placeholder="First name">
+                    type="text" 
+                    id="defaultRegisterFormFirstName"
+                    [class.is-invalid]="firstName.invalid && (firstName.touched || firstName.dirty)"
+                    [class.is-valid]="firstName.valid"
+                    formControlName="firstName" 
+                    class="form-control"
+                    autofocus 
+                    placeholder="First name">
                 <div *ngIf="firstName.invalid && firstName.touched">
                     <small *ngIf="firstName.errors?.required" style="color:red">FirstName is required***</small>
                     <small *ngIf="firstName.errors?.minlength" style="color:red">minLength should be of 4 characters***</small>
@@ -156,7 +159,7 @@
         </div>
 
         <!-- Sign up button -->
-        <button  [disabled]="!userForm.valid" mdbBtn  color="success" block="true" class="my-4" type="submit" >Sign in</button>
+        <button  [disabled]="!userForm.valid" mdbBtn  color="success" block="true" class="my-4" type="submit" >Sign Up</button>
 
         <!-- Social register -->
         <p>or sign up with:</p>
