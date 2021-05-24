@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
 import { UserPostsComponent } from './modules/posts/pages/user-posts/user-posts.component';
 import { EditProfileComponent } from './modules/profile/components/edit-profile/edit-profile.component';
@@ -14,9 +15,9 @@ const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
-  {path:'dashboard',component:DashboardComponent},
-  {path:"posts",component:UserPostsComponent},
-  {path:"profile",component:ProfileComponent,
+  {path:'dashboard',component:DashboardComponent,canActivate:[AuthGuard]},
+  {path:"posts",component:UserPostsComponent,canActivate:[AuthGuard]},
+  {path:"profile",component:ProfileComponent,canActivate: [AuthGuard],canActivateChild: [AuthGuard],
   children:
   [
     {path:'',component:ProfileAboutComponent},

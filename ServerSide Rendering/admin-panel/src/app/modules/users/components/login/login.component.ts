@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute,Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 import {LocalStorageService} from 'ngx-webstorage'
 
 @Component({
@@ -34,8 +34,7 @@ export class LoginComponent implements OnInit {
   constructor(private fb:FormBuilder,
     private userService:UserService,
     private router:Router
-    ,private route:ActivatedRoute,
-    private authservice:AuthService) { }
+    ,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -48,6 +47,8 @@ export class LoginComponent implements OnInit {
   onSubmit(){
 
     this.userService.loginUser(this.loginForm.value).subscribe(response=>{
+
+      console.log(response)
 
       if(response.length===0){
         return false
@@ -67,12 +68,14 @@ export class LoginComponent implements OnInit {
       }else{
 
         if(response.isAdmin){
-
-          this.userService.setUserId(response._id)
-
+          this.userService.setUserData(JSON.stringify(response.user))
+          // this.authservice.setAuthToken(response.token)
           this.router.navigateByUrl('dashboard')
         }else{
-          this.router.navigateByUrl('dashboard')
+
+          this.userService.setUserData(JSON.stringify(response.user))
+          // this.authservice.setAuthToken(response.token)
+          this.router.navigateByUrl('home')
 
         }
       }

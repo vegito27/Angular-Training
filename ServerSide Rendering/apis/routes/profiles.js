@@ -11,18 +11,13 @@ const Profile=require('../models/profile')
 app.get('/profile',async (req,res)=>{
 
     try{
-
         const profile=await Profile.find()
-
         res.send({"profiles":profile})
-
 
     }catch(e){
 
         res.send({"error":e})
     }
-
-
 })
 
 
@@ -45,37 +40,24 @@ app.get('/profile/:id',async (req,res)=>{
 // create Profile
 app.post('/profile',async (req,res)=>{
 
-    let currentUserId=localStorage.getItem(req.params.id)
-
     try{
         const profile=new Profile({
+            firstName:req.body.firstName,
+            lastName:req.body.lastName,
             DOB:req.body.DOB,
             gender:req.body.gender,
-            aboutMe:req.body.aboutMe,
-            addressList:{
-                address:req.body.address,
-                country:req.body.country,
-                state:req.body.country,
-                city:req.body.city,
-                zip:req.body.zip
-            },
-            social:{
-                github:req.body.github,
-                linkedin:req.body.linkedin
-            },
-            companyInfo:{
-                companyName:req.body.companyName,
-                webSite:req.body.webSite
-            },
-            user:mongoose.Types.ObjectId(currentUserId)
+            addressLine:req.body.addressLine,
+            social:req.body.social,
+            companyInfo:req.body.companyInfo,
+            user:mongoose.Types.ObjectId(req.body.id)
         })
 
-        let data={$set:{firstName:req.body.firstName,lastName: req.body.lastName} }
-            
+        const user= await User.findOne({_id:mongoose.Types.ObjectId(req.body.id)})
 
-        const user= await User.updateOne({_id:mongoose.Types.ObjectId("60a163a6d182668ca66400c6")},data)
+        user.firstName=req.body.firstName
+        user.lastName=req.body.lastName
 
-       console.log(user)
+        await user.save()
         await profile.save()
 
         res.status(200).send(req.body)
@@ -89,33 +71,45 @@ app.post('/profile',async (req,res)=>{
 app.patch('/profile/:id',async (req,res)=>{
 
     try{
-        const profile=new Profile({
-            DOB:req.body.DOB,
-            gender:req.body.gender,
-            aboutMe:req.body.aboutMe,
-            addressList:{
-                address:req.body.address,
-                country:req.body.country,
-                state:req.body.country,
-                city:req.body.city,
-                zip:req.body.zip
-            },
-            social:{
-                github:req.body.github,
-                linkedin:req.body.linkedin
-            },
-            companyInfo:{
-                companyName:req.body.companyName,
-                webSite:req.body.webSite
-            },
-            user:mongoose.Types.ObjectId(req.params.id)
-        })
+        const profile=await Profile.findOne({user:mongoose.Types.ObjectId(req.params.id)})
+
+        if(req.body.DOB) profile.DOB=req.body.DOB
+        if(req.body.gender) profile.gender=req.body.gender
+
+        let addressLine={}
+        if(req.body.address) addressLine.address=req.body.address
+        if(req.body.state) addressLine.state=req.body.state
+        if(req.body.city) addressLine.city=req.body.city
+        if(req.body.district) addressLine.district=req.body.district
+        if(req.body.zip) addressLine.zip=req.body.zip
+
+        let customerInfo={}
+        if(req.body.company) customerInfo.company=req.body.company
+        if(req.body.website) customerInfo.website=req.body.website
+
+        let social={}
+        if(req.body.github) customerInfo.github=req.body.github
+        if(req.body.linkedin) customerInfo.linkedin=req.body.linkedin
+
+
+        profile.customerInfo=customerInfo
+        profile.addressLine=addressLine
+        profile.social=social
+        await profile.save()
+
+
+        const user=await User.findOne({_id:mongoose.Types.ObjectId(req.params.id)})
+        if(req.body.firstName) user.firstName=req.body.firstName
+        if(req.body.lastName)  user.lastName=req.body.lastName
+
+        await user.save()
+
+        res.send({"profile":profile})
+
     }catch(e){
         console.log(e)
     }
 })
-
-
 
 // **********************TEST***********************
 

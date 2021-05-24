@@ -96,20 +96,6 @@ app.patch('/post/:id',async (req,res)=>{
 // pass the post Id
 app.delete('/posts/:id',async (req,res)=>{
 
-	try{
-
-		const post=Post.findOneAndDelete({_id:mongoose.types.ObjectId(req.params.id)})
-
-		
-
-
-
-
-
-	}
-
-
-
 
 
 

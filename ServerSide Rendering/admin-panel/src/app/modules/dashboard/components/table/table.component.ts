@@ -2,7 +2,7 @@ import { EventEmitter } from '@angular/core';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { nextTick } from 'process';
 import { User } from 'src/app/models/user';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-table',

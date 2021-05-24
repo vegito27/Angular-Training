@@ -50,15 +50,15 @@ const UserSchema=new schema({
 
 
 //runs before creating model and provide encryption to password
-UserSchema.pre(
-	'save',
-	async function(next) {
-	  const user = this;
-	  const hash = await bcrypt.hash(this.password, 10);
-	  this.password = hash;
-	  next();
-	}
-  );
+// UserSchema.pre(
+// 	'save',
+// 	async function(next) {
+// 	  const user = this;
+// 	  const hash = await bcrypt.hash(this.password, 10);
+// 	  this.password = hash;
+// 	  next();
+// 	}
+//   );
 
 //   UserSchema.methods.isValidPassword = async function(password) {
 // 	const user = this;

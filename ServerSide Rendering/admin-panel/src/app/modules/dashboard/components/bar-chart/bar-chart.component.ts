@@ -1,8 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
-import { BarChartService } from 'src/app/services/bar-chart.service';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-bar-chart',
@@ -11,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class BarChartComponent implements OnInit {
 
-  constructor(private _userservice:UserService,private _barchartservice:BarChartService) { }
+  constructor(private _userservice:UserService) { }
 
   @Input('user') user:any
 

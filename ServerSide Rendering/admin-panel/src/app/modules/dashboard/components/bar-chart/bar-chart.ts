@@ -1,7 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-bar-chart',

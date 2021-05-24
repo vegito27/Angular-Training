@@ -3,10 +3,36 @@ import 'zone.js/dist/zone-node';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import { join } from 'path';
+import 'localstorage-polyfill'
+import { sessionStorage } from 'sessionstorage';
+
 
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
+
+const domino=require('domino')
+const fs=require('fs')
+const path=require('path')
+const template = fs
+  .readFileSync(path.join(join(process.cwd(), 'dist/admin-panel/browser'), 'index.html'))
+  .toString();
+
+const win=domino.createWindow(template)
+win.Object=Object
+win.Math=Math
+
+global['window']=win
+global['document']=win.document
+global['branch']=null
+global['object']=win.object
+global['HTMLElement']=win.HTMLElement
+global['navigator']=win.navigator
+global['localStorage']=localStorage
+global['sessionStorage']=sessionStorage
+global['Event']=win.Event
+global['Event']['prototype']=win.Event.prototype
+
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {

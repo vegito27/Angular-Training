@@ -29,7 +29,8 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="firstname"> Gender:</label>
-                <select class="form-control browser-default custom-select" formControlName="gender">
+                <select class="form-control browser-default custom-select" formControlName="gender" aria-placeholder="Select City">
+                    <option value="" disabled>Select Gender</option>
                     <option>Male</option>
                     <option>Female</option>
                 </select>
@@ -50,7 +51,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-12">
             <div class="form-group">
                 <label for="userbio">About Me</label>
@@ -62,8 +63,8 @@
                     placeholder="Write something...">
                 </textarea>
             </div>
-        </div> <!-- end col -->
-    </div> <!-- end row -->
+        </div> 
+    </div>  -->
 
     <div formGroupName="addressLine">
     <h5 style="color:white;font-size: 13px;" class="mb-3 text-uppercase special-color-x color-white p-2"><i class="mdi mdi-home-circle mr-1 "></i> Address</h5>
@@ -86,9 +87,11 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="state">State:</label>
-                <select class="form-control browser-default custom-select" formControlName="state">
-                    <option>s1</option>
-                    <option>s2</option>
+                <select class="form-control browser-default custom-select" (change)="changeCity($event)" formControlName="state">
+                    <option value="" disabled>Choose your State</option>
+                    <option *ngFor="let item of statesArr" [ngValue]="item">
+                        {{item}}
+                    </option>
                 </select>
                 <!-- <input type="email" class="form-control" id="state" placeholder="Select state"> -->
                 <!-- <span class="form-text text-muted"><small>If you want to change email please <a href="javascript: void(0);">click</a> here.</small></span> -->
@@ -98,18 +101,14 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="district">District:</label>
-                <select class="form-control browser-default custom-select" formControlName="district" aria-placeholder="Select District">
-                    <option>D1</option>
-                    <option>D2</option>
+                <select class="form-control browser-default custom-select" (change)="changeCity($event)" formControlName="district" aria-placeholder="Select District">
+                    <option value="" disabled>Choose your District</option>
+                    <option *ngFor="let district of districtArr" [ngValue]="district">{{district}}</option>
                 </select>
                 <!-- <input type="email" class="form-control" id="state" placeholder="Select state"> -->
                 <!-- <span class="form-text text-muted"><small>If you want to change email please <a href="javascript: void(0);">click</a> here.</small></span> -->
             </div>
         </div>
-
-
-
-
     </div>
 
     <div class="row">
@@ -117,8 +116,11 @@
             <div class="form-group">
                 <label for="userpassword">City:</label>
                 <select class="form-control browser-default custom-select" formControlName="city" aria-placeholder="Select City">
-                    <option>Male</option>
-                    <option>Female</option>
+                    <option value="" disabled>Choose your City</option>
+                    <!-- <option value="" disabled>Choose your city</option> -->
+                    <option *ngFor="let item of citiesArr" [ngValue]="item">
+                    {{item}}
+                    </option>
                 </select>
                 
                 <!-- <input type="password" class="form-control" id="userpassword" placeholder="Select city"> -->
@@ -133,9 +135,13 @@
                     class="form-control" 
                     formControlName="zip" 
                     id="zip" 
+                    maxlength="5"
                     placeholder="Enter zip code...">
                 <!-- <span class="form-text text-muted"><small>If you want to change password please <a href="javascript: void(0);">click</a> here.</small></span> -->
+    
+            
             </div>
+            
         </div> <!-- end col -->
     </div> <!-- end row -->
 </div>

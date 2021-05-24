@@ -10,15 +10,6 @@ const Profile=require('../models/skill')
 
 app.get('/skills',async(req,res)=>{
 
-	try{
-
-
-		const skill=Skill
-
-
-
-
-	}
 
 
 

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { User } from '../models/user';
+import { User } from '../../models/user';
+import {base_url} from './../urls/urls.js'
 
 
 @Injectable({
@@ -23,6 +24,8 @@ export class UserService {
   sidebarVisibilityChange: Subject<boolean> = new Subject<boolean>()
 
   constructor(private _http:HttpClient) {
+
+    console.log(this.base_url)
     this.sidebarVisibilityChange.subscribe((value) => {
       this.isSidebarVisible = value
     });
@@ -43,19 +46,20 @@ export class UserService {
   }
 
   addUser(data){
+    
     return this._http.post<any>(this.base_url,data)
   }
 
-  setUserId(id){
-    localStorage.setItem('id',id)
+  setUserData(user){
+    localStorage.setItem('user',user)
   }
 
-  removeUserId(){
-    localStorage.removeItem('id')
+  removeUserData(){
+    localStorage.removeItem('user')
   }
 
-  getUserId(){
-    return localStorage.getItem('id')
+  getUserData(){
+    return localStorage.getItem('user')
   }
 
   getUser(){

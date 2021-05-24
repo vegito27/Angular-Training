@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { enableProdMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,6 +41,9 @@ import { ProfileActionCardComponent } from './modules/profile/components/profile
 import { ProfileSocialLinksComponent } from './modules/profile/components/profile-social-links/profile-social-links.component';
 import { ProfileAboutComponent } from './modules/profile/components/profile-about/profile-about.component';
 import {NgxWebstorageModule} from 'ngx-webstorage'
+import { UpdateProfileComponent } from './shared/modals/update-profile/update-profile.component';
+import { AuthService } from './services/auth/auth.service';
+import { AuthGuard } from './guards/auth.guard';
 // import { SidebarOpenDirective } from './directives/sidebar-open.directive'; 
 
 @NgModule({
@@ -76,7 +79,8 @@ import {NgxWebstorageModule} from 'ngx-webstorage'
     ProfileCardComponent,
     ProfileActionCardComponent,
     ProfileSocialLinksComponent,
-    ProfileAboutComponent
+    ProfileAboutComponent,
+    UpdateProfileComponent
   
     // SidebarOpenDirective
   ],
@@ -92,9 +96,10 @@ import {NgxWebstorageModule} from 'ngx-webstorage'
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    NgxWebstorageModule
+    NgxWebstorageModule,
+    NgxWebstorageModule.forRoot(),
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

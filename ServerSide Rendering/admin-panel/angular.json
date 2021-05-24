@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "admin-panel": {
+    "admin-panel": { 
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -111,6 +111,7 @@
               "tsconfig.app.json",
               "tsconfig.spec.json",
               "e2e/tsconfig.json",
+              "tsconfig.server.json",
               "tsconfig.server.json"
             ],
             "exclude": [

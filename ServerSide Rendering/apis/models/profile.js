@@ -6,20 +6,22 @@ const profileSchema=new schema({
 
     profile:{
 		type:String,
-        trim:true
+        trim:true,
+        default:'@User'
 	},
     DOB:{
 		type:String,
         trim:true
 	},
     aboutMe:{
-		type:String
+		type:String,
+        default:"This is about me....."
 	},
     gender:{
         type:String
      
     },
-    addressList:{
+    addressLine:{
         address:{
             type:String
         },

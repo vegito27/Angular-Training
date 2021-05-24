@@ -1,18 +1,17 @@
 const express=require('express')
 const router=express.Router()
-
 const bcrypt=require('bcryptjs')
 const jwt=require('jsonwebtoken')
 const passport=require('passport')
 
 const User=require('../models/user')
 const ObjectId=require('mongodb').ObjectId
+const secretOrKeys='secret'
 
 const validateRegisterInput=require('../Validations/register')
 const validateLoginInput=require('../Validations/login')
 
 require('../auth/auth')
-
 
 
 // create user route
@@ -40,8 +39,7 @@ router.post('/',async (req,res)=>{
         if(userName){
             error.userName="UserName already exists"
             res.status(400).json(error)
-        }
-        else{
+        }else{
             const user=new User({
                 firstName:req.body.firstName,
                 lastName:req.body.lastName,
@@ -53,11 +51,19 @@ router.post('/',async (req,res)=>{
                 confirmPassword:req.body.confirmPassword
             })
 
-            await user.save()
-            res.send({"message":"success"})
+            bcrypt.genSalt(10,(err,salt)=>{
+				bcrypt.hash(user.password,salt,(err,hash)=>{
+					if(err) throw err
+
+                    user.password=hash
+                    user.save()
+                    res.send({"message":user})
+				})
+			})
         }
-        }
-    }catch(e){
+        
+    }}
+    catch(e){
         res.send({error:e.message})
     }
 })
@@ -126,26 +132,34 @@ router.post('/login',async(req,res)=>{
 
     try{
         const user=await User.findOne({email:req.body.email})
-
-        console.log(user)
-
         if(!user){
             error.email="Email does not exists!"
             res.status(201).send({error:error})
 
         }else{
-
-            const user=await User.findOne({email:req.body.email,password:req.body.password})
-
+            const user=await User.findOne({email:req.body.email})
             if(!user){
-
                 error.password="Password does not match***"
-
                 res.status(201).send({error:error})
-            }else{
-                res.status(200).send(user)
             }
-        }
+            else{
+                bcrypt
+                    .compare(req.body.password,user.password)
+                    .then(isMatch=>{
+                        if(isMatch){
+                            const payload={id:user.id,email:user.email,userName:user.userName}
+
+                            jwt.sign(payload,secretOrKeys,{expiresIn:86400},(err,token)=>{
+                                res.json({Success:true,token:'Bearer '+token,user:user})
+                            })
+
+                        }else{
+                            error.password="Password did not match***"
+                            res.status(201).send({error:error})
+                        }
+                    })
+                }
+            }
     }catch(e){
         console.error(e)
     }

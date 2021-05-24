@@ -4,15 +4,16 @@
             <div class="card-box text-center">
                 <img src="../../../../../assets/images/avatar.png" class="rounded-circle avatar-xl img-thumbnail" alt="profile-image">
         
-                <h4 class="mb-0">Nik G. Patel</h4>
-                <p class="text-muted">@webdesigner</p>
+                <h4 class="mb-0">{{profile.userName}}</h4>
+                <p class="text-muted">{{profile.profile}}</p>
+
+                <button type="button" mdbBtn class="btn btn-success btn-sm waves-effect mb-2 waves-light" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" mdbWavesEffect> Update Profile</button>
         
-                <button type="button" class="btn btn-success btn-sm waves-effect mb-2 waves-light" (click)="updateProfile()">Update Profile</button>
+                <!-- <button type="button" class="btn btn-success btn-sm waves-effect mb-2 waves-light" (click)="updateProfile()">Update Profile</button> -->
                 <div class="text-left mt-3">
                     <h4 class="font-13 text-uppercase">About Me :</h4>
                     <p class="text-muted font-13 mb-3">
-                        Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the
-                        1500s, when an unknown printer took a galley of type.
+                        {{profile.aboutMe}}
                     </p>
                     <!-- <p class="text-muted mb-1 font-13"><strong>Location :</strong> <span class="ml-2">Location</span></p> -->
                 </div>
@@ -23,7 +24,12 @@
             </div> <!-- end card-box -->
         
             <div class="card-box">
+                
+                <div style="display: flex;justify-content: space-between;align-items: center;">
                 <h4 class="header-title" style="font-weight: 900">Top 5 Skills</h4>
+                <a style="border-radius: 50%; color:white;margin-top: -10px;" type="button" class="btn-sm btn-danger"><i class="fa fa-plus" aria-hidden="true"></i></a>
+    
+                  </div>
                 <p class="mb-3">Everyone realizes why a new common language would be desirable</p>
                 <app-profile-card></app-profile-card>
     
@@ -50,4 +56,51 @@
     </div> <!-- end col -->
     </div>
      
+</div>
+
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog cascading-modal modal-avatar modal-md" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Header-->
+      <div class="modal-header">
+        <img src="../../../../../assets/images/avatar.png" alt="avatar"
+             class="rounded-circle img-responsive">
+      </div>
+      <!--Body-->
+      <div class="modal-body md-form mb-1 mt-3">
+
+        <h2 class="info mb-1 text-center">Change Your Profile </h2>
+
+        <div class="md-form ml-0 mr-0">
+          <input type="password" type="text" id="form29" class="form-control form-control-sm ml-0"
+                 mdbInput mdbValidate [formControl]="modalFormAvatarPassword">
+          <label for="form29" class="ml-0">Change Profile Name</label>
+          <mdb-error
+            *ngIf="modalFormAvatarPassword.invalid && (modalFormAvatarPassword.dirty || modalFormAvatarPassword.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="modalFormAvatarPassword.valid && (modalFormAvatarPassword.dirty || modalFormAvatarPassword.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form mt-2">
+
+        <textarea type="text" id="form8" class="md-textarea form-control" rows="1" mdbInput mdbValidate
+                    ></textarea>
+          <label for="form8">About Me:</label>
+          </div>
+
+        <div class="text-center mt-4">
+          <button mdbBtn color="cyan" rounded="true" class="mt-1 waves-light" mdbWavesEffect>Save
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>

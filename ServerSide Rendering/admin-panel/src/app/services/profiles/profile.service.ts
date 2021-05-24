@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import {base_url} from'./../urls/urls.js'
 
 @Injectable({
   providedIn: 'root'
@@ -29,15 +30,16 @@ export class ProfileService {
 
 
   getProfile(id){
-    console.log(id)
-
     return this._http.get<any>(this.base_url+`${id}`)
+  }
 
+  createProfile(data){
+    return this._http.post<any>(this.base_url,data)
   }
 
 
   updateProfile(data,id){
-    return this._http.post<any>(this.base_url,data)
+    return this._http.post<any>(`${this.base_url}/${id}`,data)
   }
 
 

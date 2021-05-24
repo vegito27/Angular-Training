@@ -1,7 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfileService } from 'src/app/services/profiles/profile.service';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -14,6 +15,20 @@ export class EditProfileComponent implements OnInit {
   addressLine:FormGroup
   companyInfo:FormGroup
   social:FormGroup
+  stateArray:any
+  cityArray:any
+  districtArray:any
+
+  statesArr:string[]=[]
+  citiesArr:string[]=[]
+  districtArr:string[]=[]
+
+  districts:any
+  response:any
+  cities:any
+  // City Names
+  // City: any = ['Florida', 'South Dakota', 'Tennessee', 'Michigan']
+  // cityName
 
   get firstName(){
     return this.editProfileForm.get('firstName')
@@ -43,6 +58,10 @@ export class EditProfileComponent implements OnInit {
    return this.addressLine.get('state')
  }
 
+ get district(){
+  return this.addressLine.get('district')
+ }
+
  get city(){
    return this.addressLine.get('city')
  }
@@ -67,8 +86,27 @@ export class EditProfileComponent implements OnInit {
    return this.social.get('linkedin')
  }
 
+  constructor(private fb:FormBuilder,private profileservice:ProfileService,private _userservice:UserService,private _http:HttpClient) {
+    this._http.get('../../../../../assets/district.json').subscribe(res=>{
 
-  constructor(private fb:FormBuilder,private profileservice:ProfileService,private _userservice:UserService) { }
+      this.districts=Object.values(res)
+
+      console.log(this.districts)
+
+    })
+
+    this._http.get('../../../../../assets/states.json').subscribe(res=>{ 
+      this.response=res
+      
+      let states=Object.keys(this.response)
+       this.cities=Object.values(this.response)
+
+      states.forEach(state=>{
+        this.statesArr.push(state)
+      })
+
+    })
+   }
 
   ngOnInit(): void {
 
@@ -80,10 +118,10 @@ export class EditProfileComponent implements OnInit {
       aboutMe:[''],
       addressLine:this.fb.group({
         address:[''],
-        country:[''],
+        district:[''],
         state:[''],
         city:[''],
-        zip:['']
+        zip:['',Validators.minLength(6)]
       }),
       companyInfo:this.fb.group({
         companyName:[''],
@@ -98,11 +136,36 @@ export class EditProfileComponent implements OnInit {
 
 
   onSubmit(){
-    // this will create profile
-    this.profileservice.updateProfile(this.editProfileForm.value,this._userservice.getUserId()).subscribe(data=>{
-      console.log(data)
+    let user=JSON.parse(this._userservice.getUserData())
+
+    console.log(user)
+
+
+    // creates profile
+    // this.profileservice.updateProfile(this.editProfileForm.value,user._id).subscribe(data=>{
+    //   console.log(data)
+    // })
+
+    
+
+
+
+  }
+
+  changeCity(e) {
+    let indexOfState=Number(e.target.value.split(':')[0])
+    this.statesArr.forEach((data,index)=>{
+      if(index===indexOfState){
+       this.citiesArr=this.cities[indexOfState-1]
+
+       this.districtArr=this.districts[0][index-1].districts
+
+       console.log(this.districtArr)
+       console.log(this.statesArr)
+
+       console.log(this.districtArr)
+      }
     })
-  
 
   }
 

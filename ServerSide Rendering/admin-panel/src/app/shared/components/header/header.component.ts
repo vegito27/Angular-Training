@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-header',
@@ -14,15 +14,13 @@ export class HeaderComponent {
   @Input() isAuthenticated
 
   isAuthorised:boolean
-
-  // asideVisible;
   isAuth:any
 
   constructor(private userservice:UserService,private route:Router) {
 
-     this.isAuth=this.userservice.getUserId()
+     this.isAuth=this.userservice.getUserData()
 
-    if(this.isAuth.length!==0){
+    if( !this.isAuth || this.isAuth.length!==0 ){
       this.isAuthorised=true
     }else{
       this.isAuthorised=false
@@ -34,7 +32,7 @@ export class HeaderComponent {
   }
 
   logout(){
-    this.userservice.removeUserId()
+    this.userservice.removeUserData()
     this.isAuthorised=false
     this.route.navigateByUrl('/login')
 
